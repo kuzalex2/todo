@@ -6,6 +6,7 @@ analyzer:
   errors:
     must_be_immutable: error
     one_member_abstracts: ignore
+    only_throw_errors: ignore
     use_key_in_widget_constructors: error
 linter:
   rules:
