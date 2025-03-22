@@ -70,7 +70,7 @@ extension TodoEntityToModel on TodoEntity {
 
 extension on TodoImageEntity {
   String? get toModel => switch (this) {
-    TodoLocalImageEntity(path: final path) => path,
+    TodoLocalImageEntity(localPath: final path) => path,
   };
 }
 

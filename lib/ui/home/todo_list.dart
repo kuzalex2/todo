@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/domain/entity.dart';
+import 'package:todo/domain/todo_list_provider.dart';
 import 'package:todo/ui/edit/todo_edit.dart';
-import 'package:todo/ui/home/providers.dart';
 
 class TodoListWidget extends StatelessWidget {
   const TodoListWidget(this.todos, {super.key});

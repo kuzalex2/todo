@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/domain/entity.dart';
 import 'package:todo/domain/i_file_picker.dart';
-import 'package:todo/ui/home/providers.dart';
+import 'package:todo/domain/todo_list_provider.dart';
 
 class TodoEditor extends Equatable {
   const TodoEditor(this.saved, this.editing);
@@ -26,8 +26,6 @@ class OneTodoNotifier
   @override
   Future<TodoEditor> build(TodoIdEntity id) async {
     final todos = await ref.watch(todoListProvider.future);
-    // await Future.delayed(const Duration(seconds: 1));
-    // throw 'aaa';
     final todo = todos.firstWhere((todo) => todo.id == id);
     return TodoEditor(todo, todo);
   }
@@ -67,7 +65,11 @@ class OneTodoNotifier
   Future<void> save() async {
     final previousState = await future;
 
-    await ref.read(todoListProvider.notifier).replace(previousState.editing);
+    try {
+      await ref.read(todoListProvider.notifier).replace(previousState.editing);
+    } catch (e, stackTrace) {
+      state = AsyncError(e, stackTrace);
+    }
   }
 }
 

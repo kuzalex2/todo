@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo/ui/home/providers.dart';
+import 'package:todo/domain/todo_list_provider.dart';
 
 class AddNewTodoWidget extends ConsumerStatefulWidget {
   const AddNewTodoWidget({super.key});

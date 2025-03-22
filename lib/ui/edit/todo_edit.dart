@@ -175,8 +175,6 @@ class _ImagesListWidget extends ConsumerWidget {
               case FilePickerFailure(error: final e):
                 debugPrint('Error picking file: $e');
             }
-
-            if (context.mounted) {}
           }
         },
         children: [
@@ -207,7 +205,9 @@ class _ImageWidget extends StatelessWidget {
         child: Image(
           fit: BoxFit.cover,
           image: switch (imageEntity) {
-            TodoLocalImageEntity(path: final path) => FileImage(File(path)),
+            TodoLocalImageEntity(localPath: final path) => FileImage(
+              File(path),
+            ),
           },
         ),
       ),

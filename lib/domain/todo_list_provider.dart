@@ -2,10 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/domain/entity.dart';
 import 'package:todo/domain/i_todo_repository.dart';
 
-final Provider<ITodoRepository> todoRepositoryProvider = Provider((ref) {
-  /// will be overridden in DI
-  return _EmptyTodoRepository();
-});
+final todoListProvider =
+    AsyncNotifierProvider.autoDispose<TodoList, List<TodoEntity>>(TodoList.new);
 
 class TodoList extends AutoDisposeAsyncNotifier<List<TodoEntity>> {
   @override
@@ -24,6 +22,8 @@ class TodoList extends AutoDisposeAsyncNotifier<List<TodoEntity>> {
     }
     final repository = ref.read(todoRepositoryProvider);
     try {
+      /// in real applications we should separate cache and storage
+      /// and keep them in sync
       final newTodos = await repository.add(TodoEntity.create(title));
       state = AsyncData(newTodos);
     } catch (e, s) {
@@ -55,6 +55,11 @@ class TodoList extends AutoDisposeAsyncNotifier<List<TodoEntity>> {
     }
   }
 }
+
+final Provider<ITodoRepository> todoRepositoryProvider = Provider((ref) {
+  /// will be overridden in DI
+  return _EmptyTodoRepository();
+});
 
 class _EmptyTodoRepository implements ITodoRepository {
   @override

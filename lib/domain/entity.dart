@@ -16,12 +16,12 @@ sealed class TodoImageEntity {
 }
 
 class TodoLocalImageEntity extends TodoImageEntity with EquatableMixin {
-  const TodoLocalImageEntity(this.path);
+  const TodoLocalImageEntity(this.localPath);
 
-  final String path;
+  final String localPath;
 
   @override
-  List<Object> get props => [path];
+  List<Object> get props => [localPath];
 }
 
 class TodoEntity extends Equatable {

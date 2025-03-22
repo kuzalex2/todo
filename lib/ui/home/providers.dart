@@ -8,9 +8,6 @@ final todoSortToggle = StateProvider<TodoSortField>(
   (ref) => TodoSortField.titleAsc,
 );
 
-final todoListProvider =
-    AsyncNotifierProvider.autoDispose<TodoList, List<TodoEntity>>(TodoList.new);
-
 final sortedTodos = FutureProvider<List<TodoEntity>>((ref) async {
   final todos = await ref.watch(todoListProvider.future);
   final sortBy = ref.watch(todoSortToggle);

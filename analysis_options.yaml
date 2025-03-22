@@ -12,7 +12,3 @@ linter:
   rules:
     public_member_api_docs: false
     always_put_required_named_parameters_first: false
-#    sort_pub_dependencies: false
-#    one_member_abstracts: false
-#    sort_constructors_first: false
-#    require_trailing_commas: false
